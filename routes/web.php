@@ -26,7 +26,7 @@ Route::get('/', function () {
 
 
 //New Routes
-Route::get('login', [AuthAuthController::class, 'index'])->name('login');
+Route::get('student/login', [AuthAuthController::class, 'index'])->name('student.login');
 
 Route::get('registration', [AuthAuthController::class, 'registration'])->name('register');
 Route::post('post-registration', [AuthAuthController::class, 'postRegistration'])->name('register.post');

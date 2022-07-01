@@ -18,7 +18,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        return view('auth.login');
+        return view('auth.student.login');
     } 
 
     public function registration()
@@ -57,8 +57,7 @@ class AuthController extends Controller
 
     public function dashboard()
     {
-        // dd(Auth::guard('student')->check());
-        if(Auth::check()){
+        if(Auth::guard('student')->check()){
             return view('dashboard');
         }
   

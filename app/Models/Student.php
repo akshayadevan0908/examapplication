@@ -7,7 +7,7 @@ use Jenssegers\Mongodb\Auth\User as Authenticatable;
 use Jenssegers\Mongodb\Eloquent\SoftDeletes;
 use Jenssegers\Mongodb\Eloquent\Model;
 
-class Student extends Eloquent
+class Student extends Authenticatable
 {
     use HasFactory;
     use SoftDeletes;
