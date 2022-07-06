@@ -7,6 +7,7 @@ use App\Http\Requests\Admin\Teacher\TeacherStoreRequest;
 use App\Models\Admin;
 use App\Repository\Admin\TeacherRepository;
 use Illuminate\Support\Facades\DB;
+use Auth;
 
 class TeacherController extends Controller
 {
@@ -16,7 +17,7 @@ class TeacherController extends Controller
     }
     public function index()
     {
-        $teachers = Admin::where('admin_type', config('examapp.user_roel.teacher'))->orderbydesc('created_at')->get();
+        $teachers = Admin::where('admin_type', config('examapp.user_role.teacher'))->orderbydesc('created_at')->get();
         return view('admin.teacher.index', compact('teachers'));
     }
 
@@ -37,5 +38,10 @@ class TeacherController extends Controller
             logger()->error($e);
             return false;
         }
+    }
+
+    public function dashboard()
+    {
+        return view('teacher.dashboard');
     }
 }

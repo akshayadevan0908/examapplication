@@ -18,6 +18,8 @@ class TeacherRepository
     {
         $input = $request->all();
         $input['password'] = Hash::make($request->password);
+        $input['admin_type'] = config('examapp.user_role.teacher');
+        $input['slug'] = 'teacher';
         $teacherInput = Arr::only($input, $this->model->getFillable());
         $this->model->create($teacherInput);
         return true;

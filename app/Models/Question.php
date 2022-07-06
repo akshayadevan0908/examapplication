@@ -4,18 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Jenssegers\Mongodb\Auth\User as Authenticatable;
-use Jenssegers\Mongodb\Eloquent\SoftDeletes;
-use Jenssegers\Mongodb\Eloquent\Model;
 
-class Admin extends Authenticatable
+use Jenssegers\Mongodb\Eloquent\SoftDeletes;
+
+
+class Question extends Authenticatable
 {
     use HasFactory;
     use SoftDeletes;
 
-    protected $collection = 'admin';
+    protected $collection = 'questions';
     protected $connection = 'mongodb';
    
     protected $fillable = [
-        'name', 'email','password', 'admin_type', 'slug'
+        'question', 'answer_option', 'option_a', 'option_b', 'option_c', 'option_d', 'score', 'exam_type'
     ];
 }

@@ -28,7 +28,7 @@
                         <td>{{ $student->name }}</td>
                         <td>{{ $student->email }}</td>
                         <td>{!! getStudentStatus($student->status) !!}</td>
-                        <td><a href="{{ route('admin.teacher.edit', $student->name)}}" title="Edit student"><i class="far fa-edit"></i></a></td>
+                        <td><a href="#" title="Edit student"><i class="far fa-edit"></i></a></td>
                         <td><i class="fa fa-trash" aria-hidden="true"></i></td>
                     </tr>
                 @endforeach

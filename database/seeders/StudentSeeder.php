@@ -20,8 +20,6 @@ class StudentSeeder extends Seeder
         $student = new Student();
         $student->name = 'student';
         $student->email = 'student@gmail.com';
-        $student->admin_type = config('examapp.user_role.student');
-        $student->slug = 'student';
         $student->status = config('examapp.student_status.pending');
         $student->password= Hash::make('password');
         $student->save();

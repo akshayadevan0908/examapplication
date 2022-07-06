@@ -5,7 +5,7 @@
 @endpush
 
 @section('content')
-
+student dashboard
 @endsection
 
 @push('script')

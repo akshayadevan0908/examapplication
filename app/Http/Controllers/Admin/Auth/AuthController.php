@@ -20,27 +20,44 @@ class AuthController extends Controller
 
     public function login(LoginRequest $request)
     {
-       
+        // if(Auth::guard('admin')->attempt($request->only('email', 'password'))) {
+
+        //     if(Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin')) {
+
+        //         return redirect()->route('admin.dashboard');
+                
+        //     } elseif (Auth::guard('admin')->user()->admin_type == config('examapp.user_role.teacher')) {
+
+        //         return redirect()->route('teacher.dashboard');
+                
+        //     } 
+        // } 
+
+        // else {
+
+        //     return redirect()->back();
+        // }
         if(Auth::guard('admin')->attempt($request->only('email', 'password'))) {
 
-            if(Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin')) {
+            return redirect()->route('dashboard');
+        } 
 
-                return redirect()->route('admin.dashboard');
-                
-            } elseif (Auth::guard('admin')->user()->admin_type == config('examapp.user_role.teacher')) {
-                
-                return redirect()->route('teacher.dashboard');
-                
-            } 
-        } elseif(Auth::guard('student')->attempt($request->only('email', 'password'))) {
-
-            return redirect()->route('student.dashboard');
-
-        }
         else {
 
             return redirect()->back();
         }
+        
+    }
+
+    public function dashboard()
+    {
+        if(Auth::guard('admin')->check()){
+
+            return view('admin.dashboard');
+
+        } 
+
+        return redirect("login")->withSuccess('Opps! You do not have access');
     }
 
     public function logout()
@@ -49,21 +66,21 @@ class AuthController extends Controller
         return redirect('/login');
     }
 
-    public function showRegisterForm()
-    {
-        return view('admin.auth.register');
-    }
+    // public function showRegisterForm()
+    // {
+    //     return view('admin.auth.register');
+    // }
 
-    public function register(RegisterRequest $request, Student $student)
-    {
-        $input = $request->all();
-        $input['admin_type'] = config('examapp.user_role.student');
-        $input['slug'] = 'student';
-        $input['status'] = config('examapp.student_status.pending');
-        $input['password'] = Hash::make($request->password);
-        $studentInput = Arr::only($input, $student->getFillable());
-        $student = Student::create($studentInput);
-        Auth::guard('stduent')->login($student);
-        return redirect()->route('student.dashboard');
-    }
+    // public function register(RegisterRequest $request, Student $student)
+    // {
+    //     $input = $request->all();
+    //     $input['admin_type'] = config('examapp.user_role.student');
+    //     $input['slug'] = 'student';
+    //     $input['status'] = config('examapp.student_status.pending');
+    //     $input['password'] = Hash::make($request->password);
+    //     $studentInput = Arr::only($input, $student->getFillable());
+    //     $student = Student::create($studentInput);
+    //     Auth::guard('stduent')->login($student);
+    //     return redirect()->route('student.dashboard');
+    // }
 }

@@ -11,5 +11,11 @@ return [
         'approved'  =>  1,
         'pending'   =>  0,
         'rejected'  =>  2
+    ],
+
+    'question_type' => [
+        'Question Text Answer Text'  =>  1,
+        'Question Text Answer Image'  =>  2,
+        'Question Text & Image Answer Text' => 3
     ]
 ];

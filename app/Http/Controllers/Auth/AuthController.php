@@ -5,8 +5,10 @@ namespace App\Http\Controllers\Auth;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\LoginRequest;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\RegisterRequest;
 use App\Models\Student;
 use App\Models\StudentVerify;
+use Session;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -18,7 +20,7 @@ class AuthController extends Controller
 
     public function index()
     {
-        return view('auth.student.login');
+        return view('student.auth.login');
     } 
 
     public function registration()
@@ -26,7 +28,19 @@ class AuthController extends Controller
         return view('auth.registration');
     } 
 
-    public function postRegistration(LoginRequest $request)
+    public function postLogin(LoginRequest $request)
+    {
+        $credentials = $request->only('email', 'password');
+        
+        if (Auth::guard('student')->attempt($credentials)) {
+            return redirect()->intended('dashboard')
+                        ->withSuccess('You have Successfully loggedin');
+        }
+  
+        return redirect("student/login")->withSuccess('Oppes! You have entered invalid credentials');
+    }
+
+    public function postRegistration(RegisterRequest $request)
     {
         $data = $request->all();
         $createUser = $this->create($data);
@@ -43,7 +57,7 @@ class AuthController extends Controller
               $message->subject('Email Verification Mail');
           });
          
-        return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
+          return redirect("dashboard")->withSuccess('Great! You have Successfully loggedin');
     }
 
     public function create(array $data)
@@ -51,6 +65,7 @@ class AuthController extends Controller
       return Student::create([
         'name' => $data['name'],
         'email' => $data['email'],
+        'status' => config('examapp.student_status.pending'),
         'password' => Hash::make($data['password'])
       ]);
     }
@@ -58,10 +73,9 @@ class AuthController extends Controller
     public function dashboard()
     {
         if(Auth::guard('student')->check()){
-            return view('dashboard');
+            redirect("student.dashboard");
         }
-  
-        return redirect("login")->withSuccess('Opps! You do not have access');
+        return redirect("student/login")->withSuccess('Opps! You do not have access');
     }
 
     public function verifyAccount($token)
@@ -82,6 +96,15 @@ class AuthController extends Controller
             }
         }
   
-      return redirect()->route('login')->with('message', $message);
+      return redirect()->route('student.login')->with('message', $message);
     }
+
+    public function logout() 
+    {
+        Session::flush();
+        Auth::logout();
+        return Redirect('student/login');
+    }
+
+
 }

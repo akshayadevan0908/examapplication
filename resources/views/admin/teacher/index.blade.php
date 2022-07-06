@@ -29,7 +29,7 @@
                         <tr class="odd">
                             <td class="dtr-control sorting_1" tabindex="0">{{ $teacher->name}}</td>
                             <td>{{ $teacher->email }}</td>
-                            <td><a href="{{ route('admin.teacher.edit', $teacher->name)}}"><i class="far fa-edit"></i></a></td>
+                            <td><a href="#" title="Edit teacher"><i class="far fa-edit"></i></a></td>
 
                             <td><i class="fa fa-trash" aria-hidden="true"></i></td>
                         </tr>
