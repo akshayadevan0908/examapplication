@@ -53,6 +53,8 @@ Route::group(["prefix" => "admin", "as" => 'admin.'], function () {
         Route::get('index', [QuestionController::class, 'index'])->name('index');
         Route::get('create', [QuestionController::class, 'create'])->name('create');
         Route::post('store', [QuestionController::class, 'store'])->name('store');
+        Route::get('edit/{question}', [QuestionController::class, 'edit'])->name('edit');
+        Route::post('update', [QuestionController::class, 'update'])->name('update');
     });
 
     Route::group(["prefix" => "teacher", "as" => 'teacher.'], function () {

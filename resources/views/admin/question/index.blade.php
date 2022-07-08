@@ -20,24 +20,15 @@
                 <thead>
                 <tr>
                   <th>Question</th>
-                  <th>Option A</th>
-                  <th>Option B</th>
-                  <th>Option C</th>
-                  <th>Option D</th>
-                  <th>Mark</th>
-                  <th>Answer Option</th>
+                  <th colspan="2">Action</th>
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($questions as $question)
                 <tr>
-                  <td>{{$question->question}}</td>
-                  <td>{{$question->option_a}}</td>
-                  <td>{{$question->option_b}}</td>
-                  <td>{{$question->option_c}}</td>
-                  <td>{{$question->option_d}}</td>
-                  <td>{{$question->score}}</td>
-                  <td>{{$question->answer_option}}</td>
+                  <td>{{ $question->question}}</td>
+                  <td><a href="{{ route('admin.question.edit', $question->_id)}}" title="Edit">Edit</a></td>
+                  <td>Delete</td>
                 </tr>
                 @endforeach
                 </tbody>

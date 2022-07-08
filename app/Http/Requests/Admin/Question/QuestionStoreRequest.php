@@ -26,10 +26,14 @@ class QuestionStoreRequest extends FormRequest
         return [
             'question' => 'required',
             'score' => 'required',
-            'option_a' => 'required',
-            'option_b' => 'required',
-            'option_c' => 'required',
-            'option_d' => 'required',
+            // 'option_a' => 'required|nullable',
+            // 'option_b' => 'required|nullable',
+            // 'option_c' => 'required|nullable',
+            // 'option_d' => 'required|nullable',
+            // 'option_a_file' => 'required',
+            // 'option_b_file' => 'required',
+            // 'option_c_file' => 'required',
+            // 'option_d_file' => 'required',
             'answer_option' => 'required',
         ];
     }

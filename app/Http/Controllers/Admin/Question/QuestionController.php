@@ -39,5 +39,18 @@ class QuestionController extends Controller
             return false;
         }
     }
+
+    public function edit(Question $question)
+    {
+        $question = Question::find($question->_id);
+        return view('admin.question.edit', compact('question'));
+    }
+
+    public function update(Request $request)
+    {
+        Question::update([
+            'question' => $request->question
+        ]);
+    }
 }
 
