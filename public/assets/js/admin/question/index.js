@@ -84,3 +84,30 @@ var createQuestion = {};
 
 })(createQuestion);
 
+$( document ).ready(function() {
+    $('.question').show();
+    $('.optionimages').show();
+    $('.options').hide();
+    $('.questionimage').hide();
+    $("#myselect").on("change", function() { 
+        console.log($(this).val());
+        if($(this).val() == '1') {
+            $('.options').show();
+            $('.optionimages').hide();
+            $('.question').show();
+            $('.questionimage').hide();
+        } else if($(this).val() == '2') {
+            $('.options').hide();
+            $('.question').show();
+            $('.optionimages').show();
+            $('.questionimage').hide();
+        } else {
+            $('.options').hide();
+            $('.question').show(); 
+            $('.options').show();
+            $('.questionimage').show();
+            $('.optionimages').hide();
+        }
+    })
+});
+

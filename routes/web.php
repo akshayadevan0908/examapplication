@@ -2,7 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\Auth\AuthController;
-use App\Http\Controllers\Admin\QuestionController;
+use App\Http\Controllers\Admin\Question\QuestionController;
 use App\Http\Controllers\Admin\Student\StudentController;
 use App\Http\Controllers\Admin\Teacher\TeacherController;
 use App\Http\Controllers\Auth\AuthController as AuthAuthController;
