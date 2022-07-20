@@ -29,7 +29,7 @@ class QuestionController extends Controller
     public function store(QuestionStoreRequest $request)
     {
         try {
-            $this->questionRepository->storeQusetion($request->all());
+            $this->questionRepository->storeQusetion($request);
             return response()->json([
                     'status' => true,
                     'message' => 'Success',
@@ -48,9 +48,30 @@ class QuestionController extends Controller
 
     public function update(Request $request)
     {
-        Question::update([
-            'question' => $request->question
-        ]);
+        try {
+            $this->questionRepository->updateQuestion($request);
+            return response()->json([
+                    'status' => true,
+                    'message' => 'Question Updated Successfully',
+                ]);
+        } catch (Exception $e) {
+            logger()->error($e);
+            return false;
+        }
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+            $this->questionRepository->deleteQuestion($request);
+            return response()->json([
+                    'status' => true,
+                    'message' => 'Question Deleted Successfully',
+                ]);
+        } catch (Exception $e) {
+            logger()->error($e);
+            return false;
+        }
     }
 }
 

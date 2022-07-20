@@ -27,8 +27,8 @@
                 @foreach($questions as $question)
                 <tr>
                   <td>{{ $question->question}}</td>
-                  <td><a href="{{ route('admin.question.edit', $question->_id)}}" title="Edit">Edit</a></td>
-                  <td>Delete</td>
+                  <td><a href="{{ route('admin.question.edit', $question->_id)}}" title="Edit" >Edit</a></td>
+                  <td> <a href="javascript:;" class="js_delete_question" data-id={{$question->_id}}>Delete</a></td>
                 </tr>
                 @endforeach
                 </tbody>
@@ -43,8 +43,13 @@
 
 @push('script')
 <script type="text/javascript" src="https://cdn.datatables.net/1.10.8/js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" src="{{asset('assets/js/admin/question/index.js')}}"></script>
+
 <script>
+  var QUESTION_DELETE_URL = '{{ route('admin.question.delete')}}'
+  var QUESTION_LIST_URL = '{{ route('admin.question.index') }}'
     $(document).ready( function () {
+      deleteQuestion.init();
         $('#table_id').DataTable();
     } );
 </script>

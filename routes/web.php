@@ -55,6 +55,8 @@ Route::group(["prefix" => "admin", "as" => 'admin.'], function () {
         Route::post('store', [QuestionController::class, 'store'])->name('store');
         Route::get('edit/{question}', [QuestionController::class, 'edit'])->name('edit');
         Route::post('update', [QuestionController::class, 'update'])->name('update');
+
+        Route::post('delete', [QuestionController::class, 'delete'])->name('delete');
     });
 
     Route::group(["prefix" => "teacher", "as" => 'teacher.'], function () {

@@ -24,6 +24,18 @@ function getStudentStatus($status)
 	}
 }
 
+function getQuestionType($type)
+{
+	if($type == 1 ) {
+		$val = 'Question Text Answer Text';
+	}elseif($type == 2) {
+		$val = 'Question Text Answer Image';
+	}else {
+		$val = 'Question Text & Image Answer Text';
+	}		
+	return $val;
+}
+
 
 
 

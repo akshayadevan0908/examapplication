@@ -14,8 +14,8 @@ return [
     ],
 
     'question_type' => [
-        'Question Text Answer Text'  =>  1,
-        'Question Text Answer Image'  =>  2,
-        'Question Text & Image Answer Text' => 3
+        'question_text_answer_text'  =>  1,
+        'question_text_answer_image'  =>  2,
+        'question_text_image_answer_text' => 3
     ]
 ];

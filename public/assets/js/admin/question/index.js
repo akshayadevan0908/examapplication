@@ -2,6 +2,7 @@
 
 var createQuestion = {};
 var editQuestion = {};
+var deleteQuestion = {};
 
 (function(createQuestion){
 
@@ -26,35 +27,6 @@ var editQuestion = {};
                 question: {
                     required: true
                 },
-                // answer_option: {
-                //     required: true,
-                // },
-
-                // option_a: {
-                //     required: false,
-                // },
-                // option_b: {
-                //     required: false,
-                // },
-                // option_c: {
-                //     required: false,
-                // },
-                // option_d: {
-                //     required: false,
-                // },
-
-                // option_a_file: {
-                //     required: false,
-                // },
-                // option_b_file: {
-                //     required: false,
-                // },
-                // option_c_file: {
-                //     required: false,
-                // },
-                // option_d_file: {
-                //     required: false,
-                // },
                 score: {
                     required: false,
                 }
@@ -69,18 +41,15 @@ var editQuestion = {};
                     contentType: false,
                     processData: false,
                     dataType: 'JSON',
-                    // beforeSend: function () {
-                    //     $(createQuestion.elements.formQuestion).text('Please wait..');
-                    // },
                     success: function (res) {
                         if(res.status == true) {
-                            location.href = QUESTION_LIST_URL
+                            Swal.fire(
+                                'Success!',
+                                res.msg,
+                                'success'
+                                );
+                                location.reload();
                         }
-                        Swal.fire(
-                            'Success!',
-                            res.msg,
-                            'success'
-                            );
                         $(createQuestion.elements.formQuestion)[0].reset();
                         $(createQuestion.elements.submitQuestion).text('Submit');
                     },
@@ -99,60 +68,40 @@ var editQuestion = {};
 
 })(createQuestion);
 
-(function(editQuestion){
+(function(deleteQuestion){
 
-    editQuestion.elements = {
-        editQuestion : '#js_update_question',
-        updateQuestionForm : '#js_update_question_form',
+    deleteQuestion.elements = {
+        deleteQstn : '.js_delete_question',
     }
 
-    editQuestion.init = () => {
-        editQuestion.bindControls();
+    deleteQuestion.init = () => {
+        deleteQuestion.bindControls();
     }
 
-    editQuestion.bindControls = () => {
+    deleteQuestion.bindControls = () => {
 
-        $(document).on('click', editQuestion.elements.editQuestion, function (e) {
+        $(document).on('click', deleteQuestion.elements.deleteQstn, function (e) {
                 e.preventDefault();
-                $(editQuestion.elements.updateQuestionForm).submit();
-        })
-
-        $(editQuestion.elements.updateQuestionForm).validate({
-            rules: {
-                question: {
-                    required: true
-                },
-                // score: {
-                //     required: false,
-                // }
-            },
-            submitHandler: function (form) {
-                var formData = new FormData($(editQuestion.elements.updateQuestionForm)[0]);
                 $.ajax({
                     type: "POST",
-                    url: QUESTION_UPDATE_URL,
-                    data: formData,
+                    url: QUESTION_DELETE_URL,
+                    data: {
+                        'id':$(this).data('id')
+                    },
                     cache: false,
-                    contentType: false,
-                    processData: false,
                     dataType: 'JSON',
-                    // beforeSend: function () {
-                    //     $(createQuestion.elements.formQuestion).text('Please wait..');
-                    // },
                     success: function (res) {
                         if(res.status == true) {
-                            location.href = QUESTION_LIST_URL
+                            location.href= QUESTION_LIST_URL,
+                            Swal.fire(
+                                'Success!',
+                                res.msg,
+                                'success'
+                                );
                         }
-                        Swal.fire(
-                            'Success!',
-                            res.msg,
-                            'success'
-                            );
-                        $(editQuestion.elements.formQuestion)[0].reset();
-                        $(editQuestion.elements.submitQuestion).text('Submit');
                     },
                     error: function (xhr) {
-                        $(editQuestion.elements.submitQuestion).text('Submit');
+                        $(deleteQuestion.elements.submitQuestion).text('Submit');
                         $.each(xhr.responseJSON.errors, function (key, value) {
                             var oldString = key;
                             var newString = oldString.split('.', 1)[0];
@@ -160,17 +109,19 @@ var editQuestion = {};
                         });
                     },
                 });
-            },
-        });
+        })
     }
+})(deleteQuestion);
 
-})(editQuestion);
+
+
+
 
 $( document ).ready(function() {
     $('.question').hide();
     $('.optionimages').hide();
-    $('.options').hide();
-    $('.questionimage').hide();
+    $('.options').show();
+    $('.questionimage').show();
     $("#myselect").on("change", function() { 
         console.log($(this).val());
         $('#form_type').val($(this).val());
