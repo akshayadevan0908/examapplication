@@ -37,9 +37,9 @@
             @enderror
           </div>
         </div>
-            <div class="col-4">
-                <input type="submit" id="submit_teacher" value="Submit" class="btn btn-primary float-right">
-            </div> 
+            <div class="card-footer">
+              <input type="submit" id="submit_teacher" value="Submit" class="btn btn-primary">
+            </div>
         </form>
       </div> 
     </div>

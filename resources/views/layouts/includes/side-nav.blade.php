@@ -22,7 +22,7 @@
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
         @if(Auth::guard('admin')->user() && Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
         <li class="nav-item">
-            <a href="{{ route('admin.student.index')}}" class="nav-link">
+            <a href="{{ route('admin.student.index')}}" class="nav-link {{ (request()->is('admin/student/index')) ? 'active' : '' }}">
                 <i class="nav-icon far fa-circle text-danger"></i>
                 <p class="text">Student</p>
             </a>
@@ -30,27 +30,27 @@
         @endif
         @if(Auth::guard('admin')->user() && Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
         <li class="nav-item">
-            <a href="{{ route('admin.teacher.index')}}" class="nav-link">
+            <a href="{{ route('admin.teacher.index')}}" class="nav-link {{ (request()->is('admin/teacher/index')) ? 'active' : '' }}">
                 <i class="nav-icon far fa-circle text-danger"></i>
                 <p class="text">Teacher</p>
             </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.exam.index')}}" class="nav-link {{ (request()->is('admin/exam/index')) ? 'active' : '' }}">
+            <i class="nav-icon fas fa-columns"></i>
+            <p>Exam</p>
+          </a>
+        </li>
         @endif
         <li class="nav-item">
-            <a href="#" class="nav-link">
-                <i class="nav-icon far fa-circle text-danger"></i>
-                <p class="text">Exam</p>
-            </a>
-        </li>
-        <li class="nav-item">
-          <a href="{{ route('admin.question.index')}}" class="nav-link">
+          <a href="{{ route('admin.question.index')}}" class="nav-link {{ (request()->is('admin/question/index')) ? 'active' : '' }}">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p class="text">Question</p>
           </a>
       </li>
         @if(Auth::guard('admin')->user() && Auth::guard('admin')->user()->admin_type == config('examapp.user_role.teacher'))
         <li class="nav-item">
-          <a href="#" class="nav-link">
+          <a href="{{ route('teacher.profile.view')}}" class="nav-link">
               <i class="nav-icon far fa-circle text-danger"></i>
               <p class="text">Profile&Changepassword</p>
           </a>
@@ -72,3 +72,5 @@
     </div>
     <!-- /.sidebar -->
   </aside>
+
+  

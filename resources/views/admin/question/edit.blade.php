@@ -1,5 +1,5 @@
 
-  @extends('layouts.dashboard-layout')
+ @extends('layouts.dashboard-layout')
 
   @push('styles')
   <!-- You can also include the stylesheet separately if desired: -->
@@ -47,7 +47,6 @@
               @enderror
           </div>
             @foreach($question->answer_options as $key=>$option)
-            @dd($option)
             <div class="form-group">
               <div class="form-check">
                   <input class="form-check-input" name="answer_option" type="radio" value="option_{{$key+1}}" @if(true == $option['is_correct_answer']) checked @endif>
@@ -88,10 +87,10 @@
             @foreach($question->answer_options as $key=>$option)
             <div class="form-group">
               <div class="form-check">
-                  <input class="form-check-input" name="answer_option" type="radio" value="option_{{$key+1}}"  >
+                  <input class="form-check-input" name="answer_option" type="radio" value="option_{{$key+1}}"  @if(true == $option['is_correct_answer']) checked @endif>
                   <label for="exampleInputFile">Option {{$key+1}}</label>
                   <input type="file" name="option_{{$key+1}}_file" class="form-control" placeholder="image">
-                  <img src="{{ asset('storage/questions/'.$option[0]['image']) }}" width="150px" height="150px">
+                  <img src="{{ asset('storage/questions/'.$option['image']) }}" width="150px" height="150px">
               </div>
             </div>
             @endforeach

@@ -13,22 +13,30 @@
           <div class="card">
             <div class="card-header">
               <h3 class="card-title">Questions</h3>
+              @if(Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
               <a href="{{ route('admin.question.create')}}"><button class="btn btn-primary float-right">Create New Question</button></a>
+              @endif
             </div>
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
                   <th>Question</th>
+                  <th>Score</th>
+                  @if(Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
                   <th colspan="2">Action</th>
+                  @endif
                 </tr>
                 </thead>
                 <tbody>
                 @foreach($questions as $question)
                 <tr>
                   <td>{{ $question->question}}</td>
+                  <td>{{ $question->score}}</td>
+                  @if(Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
                   <td><a href="{{ route('admin.question.edit', $question->_id)}}" title="Edit" >Edit</a></td>
                   <td> <a href="javascript:;" class="js_delete_question" data-id={{$question->_id}}>Delete</a></td>
+                  @endif
                 </tr>
                 @endforeach
                 </tbody>
