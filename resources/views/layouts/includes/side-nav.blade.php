@@ -23,7 +23,7 @@
         @if(Auth::guard('admin')->user() && Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
         <li class="nav-item">
             <a href="{{ route('admin.student.index')}}" class="nav-link {{ (request()->is('admin/student/index')) ? 'active' : '' }}">
-                <i class="nav-icon far fa-circle text-danger"></i>
+                <i class="nav-icon fas fa-columns"></i>
                 <p class="text">Student</p>
             </a>
         </li>
@@ -31,7 +31,7 @@
         @if(Auth::guard('admin')->user() && Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
         <li class="nav-item">
             <a href="{{ route('admin.teacher.index')}}" class="nav-link {{ (request()->is('admin/teacher/index')) ? 'active' : '' }}">
-                <i class="nav-icon far fa-circle text-danger"></i>
+                <i class="nav-icon fas fa-columns"></i>
                 <p class="text">Teacher</p>
             </a>
         </li>
@@ -41,10 +41,16 @@
             <p>Exam</p>
           </a>
         </li>
+        <li class="nav-item">
+          <a href="{{ route('admin.exam-question.index')}}" class="nav-link {{ (request()->is('admin/exam-question/index')) ? 'active' : '' }}">
+            <i class="nav-icon fas fa-columns"></i>
+            <p>Exam Question</p>
+          </a>
+        </li>
         @endif
         <li class="nav-item">
           <a href="{{ route('admin.question.index')}}" class="nav-link {{ (request()->is('admin/question/index')) ? 'active' : '' }}">
-              <i class="nav-icon far fa-circle text-danger"></i>
+              <i class="nav-icon fas fa-columns"></i>
               <p class="text">Question</p>
           </a>
       </li>

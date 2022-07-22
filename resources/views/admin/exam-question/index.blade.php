@@ -8,9 +8,9 @@
         <div class="col-12">
           <div class="card">
             <div class="card-header">
-              <h3 class="card-title">Questions</h3>
+              <h3 class="card-title">Exam Questions</h3>
               @if(Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
-              <a href="{{ route('admin.question.create')}}"><button class="btn btn-primary float-right">Create New Question</button></a>
+              <a href="{{ route('admin.exam-question.create')}}"><button class="btn btn-primary float-right">Create New Question</button></a>
               @endif
             </div>
             
@@ -19,23 +19,31 @@
                 <thead>
                 <tr>
                   <th>Question</th>
+                  <th>Exam</th>
                   <th>Score</th>
-                  @if(Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
+                  <th>Option1</th>
+                  <th>Option2</th>
+                  <th>Option3</th>
+                  <th>Option4</th>
+                  <th>Status</th>
                   <th>Edit</th>
                   <th>Delete</th>
-                  @endif
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($questions) != 0)
-                    @foreach($questions as $question)
+                @if(count($examQuestions) != 0)
+                    @foreach($examQuestions as $question)
                         <tr>
-                            <td>{{ $question->question}}</td>
+                            <td>{{ $question->question }}</td>
+                            <td>{{ $question->exam_id }}</td>
                             <td>{{ $question->score }}</td>
-                            @if(Auth::guard('admin')->user()->admin_type == config('examapp.user_role.admin'))
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <td></td>
                             <td><a href="{{ route('admin.question.edit', $question->_id)}}" title="Edit" >Edit</a></td>
                             <td><a href="javascript:;" class="js_delete_question" data-id={{$question->_id}}>Delete</a></td>
-                            @endif
                         </tr>
                         @endforeach
                     @endif
@@ -47,15 +55,14 @@
       </div>
     </div>
   </section>
+
 @endsection
 @push('script')
-<script type="text/javascript" src="{{asset('assets/js/admin/question/index.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/admin/exam-question/index.js')}}"></script>
 <script>
-  var QUESTION_DELETE_URL = '{{ route('admin.question.delete')}}'
   var QUESTION_LIST_URL = '{{ route('admin.question.index') }}'
     $(document).ready( function () {
-      deleteQuestion.init();
-        $('#table_id').DataTable();
+      examQuestionCreate.init();
     } );
 </script>
 <script>

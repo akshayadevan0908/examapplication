@@ -6,6 +6,7 @@ use App\Http\Controllers\Admin\Question\QuestionController;
 use App\Http\Controllers\Admin\Student\StudentController;
 use App\Http\Controllers\Admin\Teacher\TeacherController;
 use App\Http\Controllers\Admin\Exam\ExamController;
+use App\Http\Controllers\Admin\ExamQuestion\ExamQuestionController;
 use App\Http\Controllers\Auth\AuthController as AuthAuthController;
 
 /*
@@ -69,6 +70,14 @@ Route::group(["prefix" => "admin", "as" => 'admin.'], function () {
 
     Route::group(["prefix" => "exam", "as" => 'exam.'], function () {
         Route::get('index', [ExamController::class, 'index'])->name('index');
+        Route::get('create', [ExamController::class, 'create'])->name('create');
+        Route::post('store', [ExamController::class, 'store'])->name('store');
+        Route::post('status', [ExamController::class, 'status'])->name('status');
+    });
+    Route::group(["prefix" => "exam-question", "as" => 'exam-question.'], function () {
+        Route::get('index', [ExamQuestionController::class, 'index'])->name('index');
+        Route::get('create', [ExamQuestionController::class, 'create'])->name('create');
+        Route::post('store', [ExamQuestionController::class, 'store'])->name('store');
     });
     
 });

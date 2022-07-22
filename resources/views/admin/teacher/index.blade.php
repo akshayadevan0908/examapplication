@@ -1,10 +1,6 @@
 @extends('layouts.dashboard-layout')
 
 @section('content')
-
-@push('styles')
- 
-@endpush
 <section class="content">
     <div class="container-fluid">
       <div class="row">
