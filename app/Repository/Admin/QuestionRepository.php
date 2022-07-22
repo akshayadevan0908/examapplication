@@ -60,24 +60,27 @@ class QuestionRepository
         $question = Question::find($data->question_id);
         $image = "";
         if($data['form_type'] == 2) {
-            if($data->has('option_1_file')|| $data->has('option_2_file') || $data->has('option_3_file')|| $data->has('option_4_file')) {
-
                 $files = [$data['option_1_file'], $data['option_2_file'], $data['option_3_file'], $data['option_4_file']];
                 $i = 1;
-                foreach($files as $file) {
+                foreach($files as $key=>$file) {
                     $option = 'option_' . $i;
-                    $imageName = 'optionimage' . time().rand(0,1000) .'.' . $file->getClientOriginalExtension();
-                    $file->move(storage_path('/app/public/questions'), $imageName);
-                    $answerOptions[] = [
-                        ['answer_option_id'=>  $data['answer_option'], 'text' => "", 'image' => $imageName, 'is_correct_answer' => $data['answer_option'] == $option ? true : false],
-                    ];
+                    if($file){
+                        $imageName = 'optionimage' . time().rand(0,1000) .'.' . $file->getClientOriginalExtension();
+                        $file->move(storage_path('/app/public/questions'), $imageName);
+                        $answerOptions[$key]['answer_option_id'] = $data['answer_option'];
+                        $answerOptions[$key]['text'] = '';
+                        $answerOptions[$key]['image'] = $imageName;
+                        $answerOptions[$key]['is_correct_answer'] = $data['answer_option'] == $option ? true : false;
+                        
+                    } else {
+                        $imageName = $question->answer_options[$key]['image'];
+                        $answerOptions[$key]['answer_option_id'] = $data['answer_option'];
+                        $answerOptions[$key]['text'] = '';
+                        $answerOptions[$key]['image'] = $imageName;
+                        $answerOptions[$key]['is_correct_answer'] = $data['answer_option'] == $option ? true : false;
+                    }
                     $i++;
                 }
-            } else {
-                
-            }
-            
-
 
         } else {
             if($data->hasFile('question_file')) {

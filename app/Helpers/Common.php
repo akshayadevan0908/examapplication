@@ -36,6 +36,16 @@ function getQuestionType($type)
 	return $val;
 }
 
+function getExamStatus($status)
+{
+	if($status == 0) {
+		$val = '<span class="badge badge-light-success">'.'Inctive'.'</span>';
+	} else {
+		$val = '<span class="badge badge-light-danger">'.'Active'.'</span>';
+	}
+	return $val;
+}
+
 
 
 
