@@ -21,14 +21,14 @@
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="inputClientCompany">Question</label>
-                    <input type="text" class="form-control" name="question" value="{{ $question->question}}">
+                    <input type="text" required class="form-control" name="question" value="{{ $question->question}}">
                   </div>
             </div>
             <div class="col-md-6">
               <div class="form-group">
                 <label>Question Type</label>
                 <input class="form-control" type="text" disabled value="{{ getQuestionType($question->question_type) }}">
-                <input type="hidden" value="{{$question->question_type}}" name="form_type">
+                <input type="hidden" required value="{{$question->question_type}}" name="form_type">
               </div>
             </div>
           </div>
@@ -41,7 +41,7 @@
             <img src="{{ asset('storage/questions/'.$question->question_image) }}" width="150px" height="150px">
             <div class="form-group">
               <label for="score">Mark</label>
-              <input type="number" name="score" value="{{ $question->score}}" class="form-control">
+              <input type="number" required name="score" value="{{ $question->score}}" class="form-control">
               @error('score')
               <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -51,7 +51,7 @@
               <div class="form-check">
                   <input class="form-check-input" name="answer_option" type="radio" value="option_{{$key+1}}" @if(true == $option['is_correct_answer']) checked @endif>
                   <label for="exampleInputFile">Option {{$key+1}}</label>
-                  <input type="text" name="option_{{$key+1}}" value="{{ $option['text']}}" class="form-control">
+                  <input type="text" required name="option_{{$key+1}}" value="{{ $option['text']}}" class="form-control">
               </div>
             </div>
             @endforeach
@@ -60,7 +60,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="score">Mark</label>
-              <input type="number" name="score" value="{{ $question->score}}" class="form-control">
+              <input type="number" required name="score" value="{{ $question->score}}" class="form-control">
               @error('score')
               <span class="text-danger">{{ $message }}</span>
               @enderror
@@ -68,9 +68,9 @@
             @foreach($question->answer_options as $key=>$option)
             <div class="form-group">
               <div class="form-check">
-                  <input class="form-check-input" name="answer_option" type="radio" value="option_{{$key+1}}" @if(true == $option['is_correct_answer']) checked @endif>
+                  <input class="form-check-input" required name="answer_option" type="radio" value="option_{{$key+1}}" @if(true == $option['is_correct_answer']) checked @endif>
                   <label for="exampleInputFile">Option {{$key+1}}</label>
-                  <input type="text" name="option_{{$key+1}}" value="{{ $option['text']}}" class="form-control">
+                  <input type="text" required name="option_{{$key+1}}" value="{{ $option['text']}}" class="form-control">
               </div>
             </div>
             @endforeach
@@ -79,7 +79,7 @@
           <div class="col-md-6">
             <div class="form-group">
               <label for="score">Mark</label>
-              <input type="number" name="score" value="{{ $question->score}}" class="form-control">
+              <input type="number" required name="score" value="{{ $question->score}}" class="form-control">
               @error('score')
               <span class="text-danger">{{ $message }}</span>
               @enderror

@@ -37,12 +37,11 @@
                             <td>{{ $question->question }}</td>
                             <td>{{ $question->exam_id }}</td>
                             <td>{{ $question->score }}</td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td></td>
-                            <td><a href="{{ route('admin.question.edit', $question->_id)}}" title="Edit" >Edit</a></td>
+                            @foreach($question->answer_options as $opt)
+                            <td>{{$opt['text']}}</td>
+                            @endforeach
+                            <td>{{ getExamStatus($question->status) }}</td>
+                            <td><a href="{{ route('admin.exam-question.edit', $question->_id)}}" title="Edit" >Edit</a></td>
                             <td><a href="javascript:;" class="js_delete_question" data-id={{$question->_id}}>Delete</a></td>
                         </tr>
                         @endforeach
@@ -60,9 +59,9 @@
 @push('script')
 <script type="text/javascript" src="{{asset('assets/js/admin/exam-question/index.js')}}"></script>
 <script>
-  var QUESTION_LIST_URL = '{{ route('admin.question.index') }}'
+  var QUESTION_LIST_URL = '{{ route('admin.exam-question.index') }}'
+  var EXAM_QUESTION_DELETE_URL = '{{ route('admin.exam-question.delete')}}'
     $(document).ready( function () {
-      examQuestionCreate.init();
     } );
 </script>
 <script>

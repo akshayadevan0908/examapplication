@@ -1,5 +1,6 @@
 <?php
 
+use App\Models\Exam;
 
 function getUser($data)
 {
@@ -39,12 +40,13 @@ function getQuestionType($type)
 function getExamStatus($status)
 {
 	if($status == 0) {
-		$val = '<span class="badge badge-light-success">'.'Inctive'.'</span>';
+		$val = 'Inctive';
 	} else {
-		$val = '<span class="badge badge-light-danger">'.'Active'.'</span>';
+		$val = 'Active';
 	}
 	return $val;
 }
+
 
 
 

@@ -58,3 +58,31 @@ var createExamQuestion = {};
     }
 
 })(createExamQuestion);
+
+
+$(document).on('click', '.js_delete_question', function (e) {
+    e.preventDefault();
+    console.log($(this).data('id'));
+    $.ajax({
+        type: "POST",
+        url: EXAM_QUESTION_DELETE_URL,
+        data: {
+            id : $(this).data('id')
+        },
+        cache: false,
+        dataType: 'JSON',
+        success: function (res) {
+            if(res.status == true) {
+                Swal.fire(
+                    'Success!',
+                    res.msg,
+                    'success'
+                    );
+                    location.reload();
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        },
+    });
+})

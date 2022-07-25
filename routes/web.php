@@ -76,8 +76,10 @@ Route::group(["prefix" => "admin", "as" => 'admin.'], function () {
     });
     Route::group(["prefix" => "exam-question", "as" => 'exam-question.'], function () {
         Route::get('index', [ExamQuestionController::class, 'index'])->name('index');
+        Route::get('edit/{examQuestion}', [ExamQuestionController::class, 'edit'])->name('edit');
         Route::get('create', [ExamQuestionController::class, 'create'])->name('create');
         Route::post('store', [ExamQuestionController::class, 'store'])->name('store');
+        Route::post('delete', [ExamQuestionController::class, 'delete'])->name('delete');
     });
     
 });

@@ -42,4 +42,24 @@ class ExamQuestionController extends Controller
             return false;
         }
     }
+
+    public function delete(Request $request)
+    {
+        try {
+            $this->examQuestionRepository->deleteExamQuestion($request);
+                return response()->json([
+                        'status' => true,
+                        'message' => 'Deleted Successfully',
+                    ]);
+            } catch (Exception $e) {
+                logger()->error($e);
+                return false;
+            }
+    }
+
+    public function edit(ExamQuestion $examQuestion)
+    {
+        $examQuestion = ExamQuestion::find($examQuestion->_id);
+        return view('admin.exam-question.edit', compact('examQuestion'));
+    }
 }

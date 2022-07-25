@@ -38,8 +38,8 @@
                 <div class="card-footer">
                     <input type="submit" id="js_submit_exam_question" value="Submit" class="btn btn-primary">
                   </div>
+                </form>
                 </div>
-              </form>
             </div>
           </div>
         </div>
