@@ -25,7 +25,7 @@ class ExamQuestionController extends Controller
 
     public function index()
     {
-        $examQuestions = ExamQuestion::with('getExam')->get();
+        $examQuestions = ExamQuestion::get();
         return view('admin.exam-question.index', compact('examQuestions'));
     }
 

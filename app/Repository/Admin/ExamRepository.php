@@ -38,8 +38,9 @@ class ExamRepository
         $examQuestion->score = $question->score;
         $examQuestion->question_type = $question->question_type;
         $examQuestion->question_image = $question->question_image;
+        $examQuestion->status = 1;
         $examQuestion->save();
-        return true;
+        return $examQuestion;
     }
 
 }

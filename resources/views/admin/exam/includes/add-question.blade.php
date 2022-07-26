@@ -6,6 +6,7 @@
             <div class="card-header">
                 <h3 class="card-title">Add Question</h3>
                 <div class="card-tools">
+                    <button type="button" class="close" data-dismiss="modal">×</button>
                 </div>
             </div>
             <div class="card-body p-0" style="display: block;">
@@ -24,9 +25,19 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $qstn->question}}</td>
                             <td class="text-right py-0 align-middle">
+                                @if(in_array($qstn->_id, $questionIds))
                                 <div class="btn-group btn-group-sm">
-                                    <a href="javascript:;" class="btn btn-primary js_add_question" data-id={{ $qstn->_id}}>Add</a>
+                                    <a href="javascript:;" class="btn btn-primary">
+                                        <div>Remove</div>
+                                    </a>
                                 </div>
+                                @else
+                                <div class="btn-group btn-group-sm">
+                                    <a href="javascript:;" class="btn btn-primary js_add_question" data-id="{{ $qstn->_id}}">
+                                        <div data-id="{{ $qstn->_id}}" id="js_text{{$qstn->_id}}" data-qtype={{ $qstn->question_type }}>Add</div>
+                                    </a>
+                                </div>
+                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -34,6 +45,9 @@
                 </table>
             </div>
         </div>
+        <div class="modal-footer">
+            <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
+          </div>
     </div>
 </div>
 </div>

@@ -58,14 +58,16 @@ class ExamController extends Controller
         $questions = Question::get();
         $examQuestions = ExamQuestion::where('exam_id', $exam->_id)->get();
         $questions = Question::get();
-        return view('admin.exam.show', compact('exam', 'exams', 'questions', 'examQuestions'));
+        $questionIds = ExamQuestion::where('exam_id', $exam->_id)->pluck('question_id')->toArray();
+        return view('admin.exam.show', compact('exam', 'exams', 'questions', 'examQuestions', 'questionIds'));
     }
 
     public function storeQuestionToExam(Request $request)
     {
         try {
-            $this->examRepository->storeExamQuestion($request);
+            $result = $this->examRepository->storeExamQuestion($request);
                 return response()->json([
+                    'data' => $result,
                         'status' => true,
                         'message' => 'Success',
                     ]);

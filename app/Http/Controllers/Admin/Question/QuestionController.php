@@ -73,5 +73,10 @@ class QuestionController extends Controller
             return false;
         }
     }
+
+    public function getDetails(Request $request)
+    {
+        dd($request->all());
+    }
 }
 

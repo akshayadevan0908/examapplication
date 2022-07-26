@@ -24,4 +24,9 @@ class ExamQuestion extends Authenticatable
     {
         return $this->belongsTo(Exam::class,'_id','exam_id');
     }
+
+    // public function question()
+    // {
+    //     return $this->belongsTo(Question::class,'question_id');
+    // }
 }
