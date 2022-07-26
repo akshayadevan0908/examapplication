@@ -10,17 +10,23 @@
               <h3 class="card-title">Create Exam</h3>
             </div>
             <div class="card-body">
-              <form id="js_form_exam">
+              {{-- <form id="js_form_exam"> --}}
+                <form action="{{ route('admin.exam.store')}}" method="post">
+                  @csrf
                 <div class="row">
                   <div class="col-sm-6">
                     <div class="form-group">
                       <label>Title</label>
                       <input type="text" name="title" class="form-control" placeholder="">
+                      @error('title')
+                          <div class="alert alert-danger">{{ $message }}</div>
+                      @enderror
+
                     </div>
                   </div>
                 </div>
                 <div class="card-footer">
-                    <input type="submit" id="js_submit_exam" value="Submit" class="btn btn-primary">
+                    <input type="submit" id="" value="Submit" class="btn btn-primary">
                   </div>
                 </div>
               </form>

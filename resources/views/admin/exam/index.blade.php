@@ -24,6 +24,7 @@
                   <th>Exam</th>
                   <th>Status</th>
                   <th></th>
+                  <th></th>
                 </tr>
                 </thead>
                 <tbody>
@@ -37,7 +38,9 @@
                       <input type="checkbox" name="status" {{ $exam->status ? 'checked' : '' }}  class="custom-control-input js_change_status" id="customSwitch{{$exam->_id}}" data-id={{$exam->_id}}>
                       <label class="custom-control-label" for="customSwitch{{$exam->_id}}"></label>
                     </div>
-                  </div></td>
+                    </div>
+                  </td>
+                  <td><a href="{{ route('admin.exam.show', $exam->_id) }}">View</td>
                 </tr>
                 @endforeach
                 @endif

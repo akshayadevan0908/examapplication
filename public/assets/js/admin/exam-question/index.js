@@ -86,3 +86,31 @@ $(document).on('click', '.js_delete_question', function (e) {
         },
     });
 })
+
+$(document).on('click', '.js_add_question', function (e) {
+    e.preventDefault();
+    console.log($('#js_exam_id').val());
+    $.ajax({
+        type: "POST",
+        url: EXAM_QUESTION_STORE_URL,
+        data: {
+            question_id : $(this).data('id'),
+            exam_id : $('#js_exam_id').val()
+        },
+        cache: false,
+        dataType: 'JSON',
+        success: function (res) {
+            if(res.status == true) {
+                Swal.fire(
+                    'Success!',
+                    res.msg,
+                    'success'
+                    );
+                    location.reload();
+            }
+        },
+        error: function (xhr) {
+            console.log(xhr);
+        },
+    });
+})

@@ -20,4 +20,8 @@ class ExamQuestion extends Authenticatable
         'exam_id', 'question_id', 'question', 'answer_option', 'option_a','option_b','option_c', 'option_d', 'status'
     ];
 
+    public function getExam()
+    {
+        return $this->belongsTo(Exam::class,'_id','exam_id');
+    }
 }
