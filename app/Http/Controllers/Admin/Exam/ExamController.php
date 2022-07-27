@@ -54,12 +54,16 @@ class ExamController extends Controller
 
     public function show(Exam $exam)
     {
-        $exams = Exam::get();
-        $questions = Question::get();
-        $examQuestions = ExamQuestion::where('exam_id', $exam->_id)->get();
-        $questions = Question::get();
-        $questionIds = ExamQuestion::where('exam_id', $exam->_id)->pluck('question_id')->toArray();
-        return view('admin.exam.show', compact('exam', 'exams', 'questions', 'examQuestions', 'questionIds'));
+        if($exam->status  == 1) {
+            $exams = Exam::get();
+            $questions = Question::get();
+            $examQuestions = ExamQuestion::where('exam_id', $exam->_id)->get();
+            $questions = Question::get();
+            $questionIds = ExamQuestion::where('exam_id', $exam->_id)->pluck('question_id')->toArray();
+            return view('admin.exam.show', compact('exam', 'exams', 'questions', 'examQuestions', 'questionIds'));
+        } else {
+            abort(404);
+        }
     }
 
     public function storeQuestionToExam(Request $request)
@@ -70,6 +74,20 @@ class ExamController extends Controller
                     'data' => $result,
                         'status' => true,
                         'message' => 'Success',
+                    ]);
+            } catch (Exception $e) {
+                logger()->error($e);
+                return false;
+            }
+    }
+
+    public function delete(Request $request)
+    {
+        try {
+            $this->examRepository->deleteExamQuestion($request);
+                return response()->json([
+                        'status' => true,
+                        'message' => 'Deleted Successfully',
                     ]);
             } catch (Exception $e) {
                 logger()->error($e);

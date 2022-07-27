@@ -5,6 +5,7 @@
     <div class="container-fluid">
       <div class="row">
         <div class="col-md-12">
+
           <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">Create Exam Question</h3>
@@ -27,81 +28,66 @@
               </div>
             </div>
 
+
+
             <div class="card card-info" id="js_question_section">
               <div class="card-header">
                 <h3 class="card-title">Selected Question</h3>
               </div>
               <div class="card-body">
-                  <div class="row">
-                    <div class="col-md-6">
-                      
-                      <div id="js_question">
-                        <div class="form-group">
-                          <label for="inputClientCompany">Question</label>
-                          <input type="text"  class="form-control" id="js_question_value">
-                        </div>
+                <div id="js_question_type_2">
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="form-group">
+                      <label for="inputClientCompany">Question</label>
+                      <input type="text" id="js_question" class="form-control">
+                    </div>
+                    <div class="form-group">
+                      <label for="score">Mark</label>
+                      <input type="number" id="js_mark" class="form-control">
+                    </div>
 
-                        <input type="file" name="question_file" class="form-control" placeholder="image">
-                        <img src="http://127.0.0.1:8000/storage/questions/optionimage1658840493.jpeg" width="150px" height="150px">
-                        
-                        <div class="form-group">
-                          <label for="score">Mark</label>
-                          <input type="number" id="js_mark" class="form-control">
-                          @error('score')
-                          <span class="text-danger">{{ $message }}</span>
-                          @enderror
-                        </div>
-                      </div>
-
-                    <div class="" id="js_type_option_type2">
-                      <div class="form-group">
-                        <div class="form-check">
-                            <input class="form-check-input" name="answer_option" type="radio" value="">
-                            <label for="exampleInputFile">Option</label>
-                            <input type="file" class="form-control">
-                            <img src="{{ asset('storage/questions/') }}" width="150px" height="150px">
-                        </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" id="js_option_1" type="radio">
+                        <label for="exampleInputFile">Option 1</label>
+                        <img src="" id="js_image_1" width="150px" height="150px">
                       </div>
                     </div>
 
-                      <div class="" id="js_type_option_type1">
-                        <div class="form-group">
-                          <div class="form-check">
-                              <input class="form-check-input" type="radio" id="js_option_1">
-                              <label for="exampleInputFile">Option 1</label>
-                              <input type="text" id="js_answer_text_1" class="form-control">
-                          </div>
-                        </div>
-  
-                        <div class="form-group">
-                          <div class="form-check">
-                              <input class="form-check-input" type="radio" id="js_option_2">
-                              <label for="exampleInputFile">Option 2</label>
-                              <input type="text" id="js_answer_text_2" class="form-control">
-                          </div>
-                        </div>
-  
-                        <div class="form-group">
-                          <div class="form-check">
-                              <input class="form-check-input" type="radio" id="js_option_3">
-                              <label for="exampleInputFile">Option 3</label>
-                              <input type="text" id="js_answer_text_3" class="form-control">
-                          </div>
-                        </div>
-  
-                        <div class="form-group">
-                          <div class="form-check">
-                              <input class="form-check-input" type="radio" id="js_option_4" >
-                              <label for="exampleInputFile">Option 4</label>
-                              <input type="text" id="js_answer_text_4" class="form-control">
-                          </div>
-                        </div>
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" id="js_option_2" type="radio">
+                        <label for="exampleInputFile">Option 2</label>
+                        <img src="" id="js_image_2" width="150px" height="150px">
                       </div>
+                    </div>
 
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" id="js_option_3" type="radio">
+                        <label for="exampleInputFile">Option 3</label>
+                        <img src="" id="js_image_3" width="150px" height="150px">
+                      </div>
+                    </div>
+
+                    <div class="form-group">
+                      <div class="form-check">
+                        <input class="form-check-input" id="js_option_4" type="radio">
+                        <label for="exampleInputFile">Option 4</label>
+                        <img src="" id="js_image_4" width="150px" height="150px">
+                      </div>
                     </div>
                   </div>
+                  <div class="col-md-6">
+                    <button type="button" class="btn btn-tool js_remove_qstn" data-id="62e0bb34476ef87e5f05e6b8" data-card-widget="remove" id="js_question_id">
+                      <i class="fas fa-times"></i>
+                      </button>
+                  </div>
+                  </div>
                 </div>
-              </div>
+                </div>
+            </div>
 
           </div>
         </div>
@@ -116,6 +102,7 @@
 <script>
     var EXAM_QUESTION_STORE_URL = '{{ route('admin.exam.store-question-to-exam')}}'
     var GET_QUESTION_DATA = '{{ route('admin.question.get-details')}}'
+    var EXAM_QUESTION_DELETE_URL = '{{ route('admin.exam.delete')}}'
     $(document).ready(function () {
         createExamQuestion.init();
     });

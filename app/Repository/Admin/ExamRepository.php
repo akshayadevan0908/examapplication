@@ -43,4 +43,11 @@ class ExamRepository
         return $examQuestion;
     }
 
+    public function deleteExamQuestion($data)
+    {
+        $examQuestion = ExamQuestion::where('question_id', $data->id)->first();
+        $examQuestion->delete();
+        return true;
+    }
+
 }

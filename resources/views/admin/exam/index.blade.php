@@ -40,7 +40,9 @@
                     </div>
                     </div>
                   </td>
+                  @if($exam->status == config('examapp.exam_question_status.active'))
                   <td><a href="{{ route('admin.exam.show', $exam->_id) }}">View</td>
+                  @endif
                 </tr>
                 @endforeach
                 @endif
