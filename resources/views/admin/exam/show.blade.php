@@ -86,6 +86,114 @@
                   </div>
                   </div>
                 </div>
+
+                <div id="js_question_type_1">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group">
+                        <label for="inputClientCompany">Question</label>
+                        <input type="text" id="js_question_type1" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <label for="score">Mark</label>
+                        <input type="number" id="js_mark_type1" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="js_option_1_type1" type="radio">
+                            <label for="exampleInputFile">Option 1</label>
+                            <input type="text" id="js_option1" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="js_option_2_type1" type="radio">
+                            <label for="exampleInputFile">Option 2</label>
+                            <input type="text" id="js_option2" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="js_option_3_type1" type="radio">
+                            <label for="exampleInputFile">Option 3</label>
+                            <input type="text" id="js_option3" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="js_option_4_type1" type="radio">
+                            <label for="exampleInputFile">Option 4</label>
+                            <input type="text" id="js_option4" class="form-control">
+                        </div>
+                      </div>
+
+                    </div>
+
+                    <div class="col-md-6">
+                    <button type="button" class="btn btn-tool js_remove_qstn" data-id="62e0bb34476ef87e5f05e6b8" data-card-widget="remove" id="js_question_id">
+                      <i class="fas fa-times"></i>
+                      </button>
+                  </div>
+                  </div>
+                </div>
+
+                <div id="js_question_type_3">
+                  <div class="row">
+                    <div class="col-md-6">
+                    
+                      <div class="form-group">
+                        <label for="inputClientCompany">Question</label>
+                        <input type="text" id="js_question_type3" class="form-control">
+                      </div>
+                      <img src="" id="js_question_image" width="150px" height="150px">
+                      <div class="form-group">
+                        <label for="score">Mark</label>
+                        <input type="number" id="js_mark_type3" class="form-control">
+                      </div>
+                      <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="js_option_1_type3" type="radio">
+                            <label for="exampleInputFile">Option 1</label>
+                            <input type="text" id="js_option1_type3" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="js_option_2_type3" type="radio">
+                            <label for="exampleInputFile">Option 2</label>
+                            <input type="text" id="js_option2_type3" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="js_option_3_type3" type="radio">
+                            <label for="exampleInputFile">Option 3</label>
+                            <input type="text" id="js_option3_type3" class="form-control">
+                        </div>
+                      </div>
+
+                      <div class="form-group">
+                        <div class="form-check">
+                            <input class="form-check-input" id="js_option_4_type3" type="radio">
+                            <label for="exampleInputFile">Option 4</label>
+                            <input type="text" id="js_option4_type3" class="form-control">
+                        </div>
+                      </div>
+
+                    </div>
+                    <div class="col-md-6">
+                    <button type="button" class="btn btn-tool js_remove_qstn" data-id="" data-card-widget="remove" id="js_question_id">
+                      <i class="fas fa-times"></i>
+                      </button>
+                  </div>
+                    </div>
+                </div>
+
                 </div>
             </div>
 
