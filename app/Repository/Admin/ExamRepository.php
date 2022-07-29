@@ -50,4 +50,12 @@ class ExamRepository
         return true;
     }
 
+    public function updateExam($request)
+    {
+        $exam = Exam::find($request->exam_id);
+        $exam->status = config('examapp.exam_status.completed');
+        $exam->save();
+        return true;
+    }
+
 }

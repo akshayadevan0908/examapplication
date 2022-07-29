@@ -17,21 +17,14 @@
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
                 <tr>
-                  <th>Teacher Name</th>
+                  <th>Name</th>
                   <th>Email</th>
+                  <th>Status</th>
                   <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
-                @if(count($students) != 0)
-                    @foreach($students as $student)
-                        <tr>
-                            <td>{{ $student->name}}</td>
-                            <td>{{ $student->email }}</td>
-                            <td><a href="#" title="Edit teacher"><i class="far fa-edit"></i></a></td>
-                        </tr>
-                        @endforeach
-                    @endif
+
                 </tbody>
               </table>
             </div>
@@ -42,12 +35,16 @@
   </section>
 @endsection
 @push('script')
-<script>
+<script defer type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.4/js/jquery.dataTables.js">
+</script>
+<script type="text/javascript" src="{{asset('assets/js/admin/student/index.js')}}"></script>
+
+{{-- <script>
   $(function () {
     $("#example1").DataTable({
       "responsive": true, "lengthChange": false, "autoWidth": false,
       "buttons": ["copy", "csv", "excel", "pdf", "print", "colvis"]
     }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
   });
-</script>
+</script> --}}
 @endpush

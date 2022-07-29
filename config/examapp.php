@@ -21,7 +21,8 @@ return [
 
     'exam_status' => [
         'active'   => 1,
-        'inactive' => 0
+        'inactive' => 0,
+        'completed' => 2
     ],
 
     'exam_question_status' => [

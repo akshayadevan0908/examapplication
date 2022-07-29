@@ -9,7 +9,6 @@
           <div class="card card-info">
             <div class="card-header">
               <h3 class="card-title">Create Exam Question</h3>
-              <i class="fa fa-plus float-right" aria-hidden="true"></i>
             </div>
             <div class="card-body">
                 <div class="row">
@@ -19,11 +18,21 @@
                       <input class="form-control" type="" value="{{ $exam->title}}" disabled>
                     </div>
                 </div>
-                <div class="col-sm-6">
+
+                <div class="col-sm-6" id="js_exam_update">
+                @if($exam->status != config('examapp.exam_status.completed') && $exam->status != config('examapp.exam_status.inactive'))
+                <div class="col-sm-3">
                   <div class="form-group">
-                    <button type="button" class="btn btn-primary"  data-toggle="modal" data-target=".addQuestionModal">Add Question</button>
+                    <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".addQuestionModal">Add Question</button>
                     </div>
-                </div>
+                  </div>
+                  <div class="col-sm-3">
+                    <div class="form-group">
+                      <button type="button" class="btn btn-primary waves-effect waves-light" data-href="{{ route('admin.exam.update-exam-status')}}" data-examId="{{ $exam->_id}}" id="js_save_exam">Publish</button>
+                      </div>
+                  </div>
+                @endif
+              </div>
               </div>
               </div>
             </div>
@@ -36,7 +45,7 @@
               </div>
               <div class="card-body">
                 <div id="js_question_type_2">
-                <div class="row">
+                {{-- <div class="row">
                   <div class="col-md-6">
                     <div class="form-group">
                       <label for="inputClientCompany">Question</label>
@@ -80,15 +89,15 @@
                     </div>
                   </div>
                   <div class="col-md-6">
-                    <button type="button" class="btn btn-tool js_remove_qstn" data-id="62e0bb34476ef87e5f05e6b8" data-card-widget="remove" id="js_question_id">
+                    <button type="button" class="btn btn-tool js_remove_qstn" data-id=""  id="js_question_id_type2">
                       <i class="fas fa-times"></i>
                       </button>
                   </div>
-                  </div>
+                  </div> --}}
                 </div>
 
                 <div id="js_question_type_1">
-                  <div class="row">
+                  {{-- <div class="row">
                     <div class="col-md-6">
                       <div class="form-group">
                         <label for="inputClientCompany">Question</label>
@@ -137,11 +146,11 @@
                       <i class="fas fa-times"></i>
                       </button>
                   </div>
-                  </div>
+                  </div> --}}
                 </div>
 
                 <div id="js_question_type_3">
-                  <div class="row">
+                  {{-- <div class="row">
                     <div class="col-md-6">
                     
                       <div class="form-group">
@@ -187,17 +196,16 @@
 
                     </div>
                     <div class="col-md-6">
-                    <button type="button" class="btn btn-tool js_remove_qstn" data-id="" data-card-widget="remove" id="js_question_id">
+                    <button type="button" class="btn btn-tool js_remove_qstn" data-id=""  id="js_question_id_type3">
                       <i class="fas fa-times"></i>
                       </button>
                   </div>
-                    </div>
+                    </div> --}}
                 </div>
 
                 </div>
-            </div>
-
-          </div>
+            </div> 
+            
         </div>
       </div>
   </section>
@@ -206,7 +214,7 @@
 
 @push('script')
 <script src="{{asset('/assets/js/jquery.validate.min.js')}}"></script>
-<script type="text/javascript" src="{{asset('assets/js/admin/exam-question/index.js')}}"></script>
+<script type="text/javascript" src="{{asset('assets/js/admin/exam-question/index.js')}}"></script> 
 <script>
     var EXAM_QUESTION_STORE_URL = '{{ route('admin.exam.store-question-to-exam')}}'
     var GET_QUESTION_DATA = '{{ route('admin.question.get-details')}}'

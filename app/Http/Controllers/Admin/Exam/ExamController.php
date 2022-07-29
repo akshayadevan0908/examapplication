@@ -54,7 +54,7 @@ class ExamController extends Controller
 
     public function show(Exam $exam)
     {
-        if($exam->status  == 1) {
+        if($exam->status  != config('examapp.exam_status.inactive')) {
             $exams = Exam::get();
             $questions = Question::get();
             $examQuestions = ExamQuestion::where('exam_id', $exam->_id)->get();
@@ -93,6 +93,21 @@ class ExamController extends Controller
                 logger()->error($e);
                 return false;
             }
+    }
+
+    public function updateExamStatus(Request $request)
+    {
+        try {
+            $this->examRepository->updateExam($request);
+                return response()->json([
+                        'status' => true,
+                        'message' => 'Updated Successfully',
+                    ]);
+            } catch (Exception $e) {
+                logger()->error($e);
+                return false;
+            }
+        
     }
 
 

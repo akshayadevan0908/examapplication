@@ -25,19 +25,16 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $qstn->question}}</td>
                             <td class="text-right py-0 align-middle">
-                                @if(in_array($qstn->_id, $questionIds))
-                                <div class="btn-group btn-group-sm">
-                                    <a href="javascript:;" class="btn btn-primary">
-                                        <div>Remove</div>
+                                <div class="btn-group btn-group-sm" id="remove-test-{{ $qstn->_id}}" @if(!in_array($qstn->_id, $questionIds)) style="display:none" @endif>
+                                    <a  href="javascript:;" class="btn btn-primary">
+                                        <div >Remove</div>
                                     </a>
                                 </div>
-                                @else
-                                <div class="btn-group btn-group-sm">
+                                <div class="btn-group btn-group-sm" id="add-test-{{ $qstn->_id}}" @if(in_array($qstn->_id, $questionIds)) style="display:none" @endif>
                                     <a href="javascript:;" class="btn btn-primary js_add_question" data-id="{{ $qstn->_id}}">
                                         <div data-id="{{ $qstn->_id}}" id="js_text{{$qstn->_id}}" data-qtype={{ $qstn->question_type }}>Add</div>
                                     </a>
                                 </div>
-                                @endif
                             </td>
                         </tr>
                         @endforeach
@@ -45,9 +42,9 @@
                 </table>
             </div>
         </div>
-        <div class="modal-footer">
-            <button type="button" class="btn btn-primary waves-effect waves-light">Save changes</button>
-          </div>
+        {{-- <div class="modal-footer">
+            <button type="button" class="btn btn-primary waves-effect waves-light" data-href="{{ route('admin.exam.update-exam-status')}}" data-examId="{{ $exam->_id}}" id="js_save_exam">Save changes</button>
+          </div> --}}
     </div>
 </div>
 </div>
