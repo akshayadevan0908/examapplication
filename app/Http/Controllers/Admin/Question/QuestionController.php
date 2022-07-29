@@ -78,5 +78,17 @@ class QuestionController extends Controller
     {
         dd($request->all());
     }
+
+    public function getQuestionList(Request $request)
+    {
+        try {
+            $students = $this->questionRepository->getQuestionDataList($request);
+            return response()->json(
+                 $students);
+        } catch (Exception $e) {
+            logger()->error($e);
+            return false;
+        }
+    }
 }
 

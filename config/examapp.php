@@ -19,6 +19,12 @@ return [
         'question_text_image_answer_text' => 3
     ],
 
+    'question_type_show' => [
+        'Question Text Answer Text'  =>  1,
+        'Question Text Answer Image'  =>  2,
+        'Question Text Image Answer Text' => 3
+    ],
+
     'exam_status' => [
         'active'   => 1,
         'inactive' => 0,

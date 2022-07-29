@@ -15,7 +15,6 @@ var createExamQuestion = {};
     }
 
     createExamQuestion.bindControls = () => {
-
         $(document).on('click', createExamQuestion.elements.submitBtn, function (e) {
                 e.preventDefault();
                 $(createExamQuestion.elements.formSave).submit();
@@ -128,7 +127,7 @@ $(document).on('click', '.js_add_question', function (e) {
                         }
                         typeData2 += '<div class="form-group">';
                         typeData2 += '<div class="form-check">';
-                        typeData2 += '<input class="form-check-input" id="js_option_'+index+'_type1" '+checkedStatus+' type="radio">';
+                        typeData2 += '<input class="form-check-input" name="js_option_'+index+'_type1" id="js_option_'+index+'_type1" '+checkedStatus+' type="radio">';
                         typeData2 += '<label for="exampleInputFile">Option '+index+'</label>';
                         typeData2 += '<img src="/storage/questions/'+res.data.answer_options[index-1].image+'" id="js_image_1" width="150px" height="150px">';
                         typeData2 += '</div>';
@@ -165,7 +164,7 @@ $(document).on('click', '.js_add_question', function (e) {
                         }
                         typeData1 += '<div class="form-group">';
                         typeData1 += '<div class="form-check">';
-                        typeData1 += '<input class="form-check-input" id="js_option_'+index+'_type1" '+checkedStatus+' type="radio">';
+                        typeData1 += '<input class="form-check-input" name="js_option_'+index+'_type1" id="js_option_'+index+'_type1" '+checkedStatus+' type="radio">';
                         typeData1 += '<label for="exampleInputFile">Option '+index+'</label>';
                         typeData1 += '<input type="text" id="js_option'+index+'" class="form-control" value="'+res.data.answer_options[index-1].text+'">';
                         typeData1 += '</div>';
@@ -207,7 +206,7 @@ $(document).on('click', '.js_add_question', function (e) {
                         }
                         typeData3+= '<div class="form-group">';
                         typeData3+= '<div class="form-check">';
-                        typeData3+= '<input class="form-check-input" id="js_option_'+index+'_type1" '+checkedStatus+' type="radio">';
+                        typeData3+= '<input class="form-check-input" name="js_option_'+index+'_type1" id="js_option_'+index+'_type1" '+checkedStatus+' type="radio">';
                         typeData3+= '<label for="exampleInputFile">Option '+index+'</label>';
                         typeData3+= '<input type="text" id="js_option'+index+'" class="form-control" value="'+res.data.answer_options[index-1].text+'">';
                         typeData3+= '</div>';
@@ -258,37 +257,37 @@ $(document).on('click', '.js_remove_qstn', function (e) {
 
 
 
-$(document).on('click', '#js_save_exam', function (e) {
-    e.preventDefault();
-    var exam_id = $(this).data('examid');
-    var url = $(this).data('href');
-    $.ajax({
-        type: "POST",
-        url: url,
-        data: {
-            exam_id : exam_id,
-            url: url
-        },
-        cache: false,
-        dataType: 'JSON',
-        success: function (res) {
-            // $("#js_exam_update").load(" #js_exam_update");
-            swal({
-                title: "Success!",
-                text: res.msg,
-                type: "success",
-                timer: 3000
-                });
-                function () {
-                   location.reload(true);
-                   tr.hide();
-                };
-        },
-        error: function (xhr) {
-            console.log(xhr);
-        },
-    });
-})
+// $(document).on('click', '#js_save_exam', function (e) {
+//     e.preventDefault();
+//     var exam_id = $(this).data('examid');
+//     var url = $(this).data('href');
+//     $.ajax({
+//         type: "POST",
+//         url: url,
+//         data: {
+//             exam_id : exam_id,
+//             url: url
+//         },
+//         cache: false,
+//         dataType: 'JSON',
+//         success: function (res) {
+//             // $("#js_exam_update").load(" #js_exam_update");
+//             swal({
+//                 title: "Success!",
+//                 text: res.msg,
+//                 type: "success",
+//                 timer: 3000
+//                 });
+//                 function () {
+//                    location.reload(true);
+//                    tr.hide();
+//                 };
+//         },
+//         error: function (xhr) {
+//             console.log(xhr);
+//         },
+//     });
+// })
 
 
 

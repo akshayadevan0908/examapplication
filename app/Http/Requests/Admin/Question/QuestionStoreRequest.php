@@ -19,29 +19,55 @@ class QuestionStoreRequest extends FormRequest
     /**
      * Get the validation rules that apply to the request.
      *
+     *
      * @return array
      */
     public function rules()
     {
-        return [
-            'question' => 'required',
-            'score' => 'required',
-            // 'option_a' => 'required|nullable',
-            // 'option_b' => 'required|nullable',
-            // 'option_c' => 'required|nullable',
-            // 'option_d' => 'required|nullable',
-            // 'option_a_file' => 'required',
-            // 'option_b_file' => 'required',
-            // 'option_c_file' => 'required',
-            // 'option_d_file' => 'required',
-            'answer_option' => 'required',
-        ];
+        $questionType = $this->form_type;
+
+        //Question Text Answer Text
+        if ($questionType == 1) {
+            $rule = [
+                'question'      => 'required',
+                'score'         => 'required',
+                'answer_option' => 'required',
+                'question_type' => 'required',
+            ];
+
+        //Question Text Answer Image
+        } else if($questionType == 2) {
+            $rule = [
+                'question'      => 'required',
+                'score'         => 'required',
+                'answer_option' => 'required',
+                'question_type' => 'required',
+                'option_1_file' => ['required','mimes:png,jpg,jpeg,pdf,doc,docx,txt,csv,xlsx,xls|max:100000'],
+                'option_2_file' => ['required','mimes:png,jpg,jpeg,pdf,doc,docx,txt,csv,xlsx,xls|max:100000'],
+                'option_3_file' => ['required','mimes:png,jpg,jpeg,pdf,doc,docx,txt,csv,xlsx,xls|max:100000'],
+                'option_4_file' => ['required','mimes:png,jpg,jpeg,pdf,doc,docx,txt,csv,xlsx,xls|max:100000']
+            ];
+
+        //Question Text Image Answer Text
+        }else if($questionType == 3) {
+            $rule = [
+                'question'      => 'required',
+                'score'         => 'required',
+                'answer_option' => 'required',
+                'question_type' => 'required',
+                'question_file' => 'required',
+                'question_file' => ['required','mimes:png,jpg,jpeg,pdf,doc,docx,txt,csv,xlsx,xls|max:100000']
+            ];
+        }
+
+        return  $rule;
     }
 
     public function messages()
          {
              return [
                 'answer_option.required' => 'Select one answer as option', 
+                'question_type.required' => 'Please select question type', 
              ];
          }
 }

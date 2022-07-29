@@ -13,31 +13,25 @@
           </div>
           <div class="card-body">
             <form action="" method="POST" id="form_question">
-              <span id="js_answer_option_error" class="text-danger"></span>
+              
             <input type="hidden" value="1" name="form_type" id="form_type">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Question</label>
-                  <input type="text" required name="question" value="{{ old('question')}}" class="form-control">
-                  @error('question')
-                  <span class="text-danger">{{ $message }}</span>
-                  @enderror
+                  <input type="text" name="question" value="{{ old('question')}}" class="form-control">
+                  <span class="text-danger" id="js-question-error"></span>
                 </div>
 
                 <div class="form-group questionimage">
                   <input type="file" name="question_file" class="form-control">
-                    @error('question_file')
-                    <span class="text-danger">{{ $message }}</span>
-                    @enderror
+                    <span class="text-danger" id="js-questionimage-error"></span>
                 </div>
   
                 <div class="form-group">
                   <label for="score">Mark</label>
-                  <input type="number" required name="score" value="{{ old('score')}}" class="form-control">
-                  @error('score')
-                  <span class="text-danger">{{ $message }}</span>
-                  @enderror
+                  <input type="number" name="score" value="{{ old('score')}}" class="form-control">
+                  <span class="text-danger" id="js-score-error"></span>
                 </div>
   
                 <div class="form-group">
@@ -47,10 +41,7 @@
                         <div class="form-check">
                             <input class="form-check-input" name="answer_option" type="radio" value="option_1">
                             <label for="exampleInputFile">Option A</label>
-                            <input type="file" required name="option_1_file" class="form-control">
-                            @error('option_1_file')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <input type="file" name="option_1_file" class="form-control">
                         </div>
                     </div>
                 
@@ -58,7 +49,7 @@
                         <div class="form-check">
                             <input class="form-check-input" name="answer_option" type="radio" value="option_2">
                             <label for="exampleInputFile">Option B</label>
-                            <input type="file" required name="option_2_file" class="form-control">
+                            <input type="file" name="option_2_file" class="form-control">
                             @error('option_2_file')
                             <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -69,10 +60,7 @@
                         <div class="form-check">
                             <input class="form-check-input" name="answer_option" type="radio" value="option_3">
                             <label for="exampleInputFile">Option C</label>
-                            <input type="file" required name="option_3_file" class="form-control">
-                            @error('option_3_file')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <input type="file" name="option_3_file" class="form-control">
                         </div>
                     </div>
                 
@@ -80,10 +68,7 @@
                         <div class="form-check">
                             <input class="form-check-input" name="answer_option" type="radio" value="option_4">
                             <label for="exampleInputFile">Option D</label>
-                            <input type="file" required name="option_4_file" class="form-control">
-                            @error('option_4_file')
-                            <span class="text-danger">{{ $message }}</span>
-                            @enderror
+                            <input type="file" name="option_4_file" class="form-control">
                         </div>
                     </div>
                   </div>
@@ -94,10 +79,8 @@
                       <div class="form-check">
                           <input class="form-check-input" name="answer_option" type="radio" value="option_1"></span>
                           <label for="exampleInputFile">Option A</label>
-                          <input type="text" required name="option_1" value="{{ old('option_1')}}"  class="form-control">
-                          @error('option_1')
-                          <span class="text-danger">{{ $message }}</span>
-                          @enderror
+                          <input type="text"  name="option_1" value="{{ old('option_1')}}"  class="form-control">
+                          <span class="text-danger" id="js-option_1-error"></span>
                       </div>
                     </div>
 
@@ -105,10 +88,8 @@
                       <div class="form-check">
                         <input class="form-check-input" name="answer_option" type="radio" value="option_2"></span>
                           <label for="exampleInputFile">Option B</label>
-                          <input type="text" required name="option_2" value="{{ old('option_2')}}" class="form-control">
-                          @error('option_2')
-                          <span class="text-danger">{{ $message }}</span>
-                          @enderror
+                          <input type="text"  name="option_2" value="{{ old('option_2')}}" class="form-control">
+                          <span class="text-danger" id="js-option_2-error"></span>
                       </div>
                     </div>
 
@@ -116,10 +97,8 @@
                       <div class="form-check">
                         <input class="form-check-input" name="answer_option" type="radio" value="option_3"></span>
                           <label for="exampleInputFile">Option c</label>
-                          <input type="text" required name="option_3" value="{{ old('option_3')}}" class="form-control">
-                          @error('option_3')
-                          <span class="text-danger">{{ $message }}</span>
-                          @enderror
+                          <input type="text"  name="option_3" value="{{ old('option_3')}}" class="form-control">
+                          <span class="text-danger" id="js-option_3-error"></span>
                       </div>
                     </div>
 
@@ -127,10 +106,8 @@
                       <div class="form-check">
                         <input class="form-check-input" name="answer_option" type="radio" value="option_4"></span>
                           <label for="exampleInputFile">Option D</label>
-                          <input type="text" required name="option_4" value="{{ old('option_4')}}" class="form-control">
-                          @error('option_4')
-                          <span class="text-danger">{{ $message }}</span>
-                          @enderror
+                          <input type="text"  name="option_4" value="{{ old('option_4')}}" class="form-control">
+                          <span class="text-danger" id="js-option_4-error"></span>
                       </div>
                     </div>
                   </div>
@@ -145,14 +122,18 @@
               <div class="col-md-6">
                 <div class="form-group">
                   <label>Question Type</label>
-                  <select id="myselect" name="question_type" class="form-control">
-                    @foreach(config('examapp.question_type') as $key =>$value)
-                    <option value="{{$value}}" @if($value==3) selected @endif>{{$key}}</option>
+                  <select id="myselect" name="question_type" required class="form-control">
+                    <option value="">--Select--</option>
+                    @foreach(config('examapp.question_type_show') as $key =>$value)
+                    <option value="{{$value}}">{{$key}}</option>
                     @endforeach
                   </select>
+                  <span id="js_question_type_error" class="text-danger js_backend_validation"></span>
+                  <span class="text-danger" id="js-question_type-error"></span>
                 </div>
               </div>
             </div>
+            <span id="js_answer_option_error" class="text-danger js_backend_validation"></span>
             </form>
           </div>
           

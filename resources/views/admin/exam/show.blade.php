@@ -26,11 +26,11 @@
                     <button type="button" class="btn btn-primary" data-toggle="modal" data-target=".addQuestionModal">Add Question</button>
                     </div>
                   </div>
-                  <div class="col-sm-3">
+                  {{-- <div class="col-sm-3">
                     <div class="form-group">
                       <button type="button" class="btn btn-primary waves-effect waves-light" data-href="{{ route('admin.exam.update-exam-status')}}" data-examId="{{ $exam->_id}}" id="js_save_exam">Publish</button>
                       </div>
-                  </div>
+                  </div> --}}
                 @endif
               </div>
               </div>

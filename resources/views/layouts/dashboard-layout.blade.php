@@ -29,6 +29,11 @@
  <link rel="stylesheet" href="{{asset('plugins/summernote/summernote-bs4.min.css')}}">
  <link rel="stylesheet" href="{{asset('plugins/datatables-bs4/css/dataTables.bootstrap4.min.css')}}">
  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
+ <style>
+  .error{
+    color: red;
+  }
+ </style>
  @stack('styles')
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -36,7 +41,7 @@
 
   <!-- Preloader -->
   <div class="preloader flex-column justify-content-center align-items-center">
-    <img class="animation__shake" src="dist/img/AdminLTELogo.png" alt="AdminLTELogo" height="60" width="60">
+    <img class="animation__shake" src="{{asset('dist/img/AdminLTELogo.png')}}" alt="AdminLTELogo" height="60" width="60">
   </div>
 
   <!-- Navbar -->
