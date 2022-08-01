@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\Teacher\TeacherController;
 use App\Http\Controllers\Admin\Exam\ExamController;
 use App\Http\Controllers\Admin\ExamQuestion\ExamQuestionController;
 use App\Http\Controllers\Auth\AuthController as AuthAuthController;
+use App\Http\Controllers\Student\ExamController as StudentExamController;
 
 /*
 |--------------------------------------------------------------------------
@@ -103,3 +104,13 @@ Route::group(["prefix" => "teacher", "as" => 'teacher.'], function () {
 Route::get('dashboard', [AuthController::class, 'dashboard'])->name('dashboard');
 Route::get('student/dashboard', [AuthAuthController::class, 'dashboard'])->name('student.dashboard')->middleware(['is_verify_email']); 
 Route::get('account/verify/{token}', [AuthAuthController::class, 'verifyAccount'])->name('user.verify'); 
+
+Route::group(["prefix" => "student", "as" => 'student.'], function () {
+    Route::group(["prefix" => "exam", "as" => 'exam.'], function () {
+        Route::get('index', [StudentExamController::class, 'index'])->name('index');
+        Route::post('exam-list-table', [StudentExamController::class, 'getExamList'])->name('exam-list-table');
+        Route::get('show/{id}', [StudentExamController::class, 'show'])->name('show');
+
+        Route::post('attend-exam', [StudentExamController::class, 'attendExam'])->name('attend-exam');
+    });
+});

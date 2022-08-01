@@ -13,7 +13,9 @@
           <img src="#" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
+          @if(Auth::guard('admin')->user() != null)
           <a href="#" class="d-block">{{ Auth::guard('admin')->user()->slug }}</a>
+          @endif
         </div>
       </div>
 
@@ -47,13 +49,22 @@
             <p>Exam Question</p>
           </a>
         </li>
-        @endif
+        
         <li class="nav-item">
           <a href="{{ route('admin.question.index')}}" class="nav-link {{ (request()->is('admin/question/index')) ? 'active' : '' }}">
               <i class="nav-icon fas fa-columns"></i>
               <p class="text">Question</p>
           </a>
+        </li>
+      @endif
+
+      <li class="nav-item">
+        <a href="{{ route('student.exam.index')}}" class="nav-link {{ (request()->is('student/exam/index')) ? 'active' : '' }}">
+            <i class="nav-icon fas fa-columns"></i>
+            <p class="text">Exam</p>
+        </a>
       </li>
+
         @if(Auth::guard('admin')->user() && Auth::guard('admin')->user()->admin_type == config('examapp.user_role.teacher'))
         <li class="nav-item">
           <a href="{{ route('teacher.profile.view')}}" class="nav-link">

@@ -33,8 +33,9 @@ class AuthController extends Controller
         $credentials = $request->only('email', 'password');
         
         if (Auth::guard('student')->attempt($credentials)) {
-            return redirect()->intended('dashboard')
-                        ->withSuccess('You have Successfully loggedin');
+            return view('student.dashboard');
+            // return redirect()->intended('dashboard')
+            //             ->withSuccess('You have Successfully loggedin');
         }
   
         return redirect("student/login")->withSuccess('Oppes! You have entered invalid credentials');
@@ -81,7 +82,6 @@ class AuthController extends Controller
     public function verifyAccount($token)
     {
         $verifyUser = StudentVerify::with('student')->where('token', $token)->first();
-
         $message = 'Sorry your email cannot be identified.';
   
         if(!is_null($verifyUser) ){
